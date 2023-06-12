@@ -3,15 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Define;
 
 public class UI_Main : UI_Scene
 {
-    enum Texts
-    {
-        TitleTMP,
-    }
-
     enum Buttons
     {
         StartButton,
@@ -21,7 +17,7 @@ public class UI_Main : UI_Scene
     
     enum Images
     {
-        BGImage,
+        LogoImage,
     }
 
     enum GameObjects
@@ -39,12 +35,15 @@ public class UI_Main : UI_Scene
         if (base.Init() == false)
             return false;
 
-        BindText(typeof(Texts));
         BindButton(typeof(Buttons));
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
 
-        GetText((int)Texts.TitleTMP).text = "노아";
+        GetImage((int)Images.LogoImage).sprite = Resources.Load<Sprite>("Sprites/Noah") as Sprite;
+        GetButton((int)Buttons.StartButton).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Start") as Sprite;
+        GetButton((int)Buttons.SettingButton).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Setting") as Sprite;
+        GetButton((int)Buttons.QuitButton).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Exit") as Sprite;
+
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(() => { Managers.Scene.ChangeScene(Define.Scene.LobbyScene);});
         GetButton((int)Buttons.SettingButton).gameObject.BindEvent(() => { Managers.UI.ShowPopupUI<UI_Setting>();});
         GetButton((int)Buttons.QuitButton).gameObject.BindEvent(() => { Managers.UI.ShowPopupUI<UI_QuitGame>();});
