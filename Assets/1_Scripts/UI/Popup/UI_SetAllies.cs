@@ -5,13 +5,7 @@ using TMPro;
 
 public class UI_SetAllies : UI_Popup
 {
-    public override bool Init()
-    {
-        if (base.Init() == false)
-            return false;
-        return true;
-    }
-    /*int characterNum = 0;
+    int characterNum = 0;
     int position = 0;
     bool isDone = false;
     string[][] weapons = {
@@ -24,15 +18,27 @@ public class UI_SetAllies : UI_Popup
         new string[] {"대포", "기관총", "크로스보우"},
         new string[] {"도끼", "덕풋", "쌍망치"},
     };
-    enum GameObjects
+
+    enum Images
     {
         BGImage,
+    }
+
+    enum Texts
+    {
         TitleTMP,
+    }
+    enum Buttons
+    {
+        DoneButton,
+    }
+
+    enum GameObjects
+    {    
         CharacterPanel,
         PositionPanel,
         WeaponPanel,
         DicisionPanel,
-        DoneButton,
     }
 
     enum Characters
@@ -53,12 +59,15 @@ public class UI_SetAllies : UI_Popup
     {
         if (base.Init() == false)
             return false;
-
+        
+        BindImage(typeof(Images));
+        BindText(typeof(Texts));
+        BindButton(typeof(Buttons));
         BindObject(typeof(GameObjects));
 
-        GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군을 지정하세요.";
-        GetObject((int)GameObjects.DoneButton).gameObject.BindEvent(OnClickedDoneBtn);
-        GetObject((int)GameObjects.DoneButton).gameObject.SetActive(false);
+        GetText((int)Texts.TitleTMP).text = "함께 싸울 아군을 지정하세요.";
+        GetButton((int)Buttons.DoneButton).gameObject.BindEvent(OnClickedDoneBtn);
+        GetButton((int)Buttons.DoneButton).gameObject.SetActive(false);
 
         int i = 0;
         foreach (Transform child in GetObject((int)GameObjects.CharacterPanel).transform)
@@ -90,7 +99,7 @@ public class UI_SetAllies : UI_Popup
     {
         if(Managers.Ally.isSet[idx]) Managers.Ally.isSet[idx] = !Managers.Ally.isSet[idx];
         characterNum = idx;
-        GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군" + IntToEnum<Characters>(idx).ToString() + "의 위치를 지정하세요.";
+        //GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군" + IntToEnum<Characters>(idx).ToString() + "의 위치를 지정하세요.";
         foreach (Transform child in GetObject((int)GameObjects.PositionPanel).transform)
         {
             child.gameObject.SetActive(true);
@@ -99,7 +108,7 @@ public class UI_SetAllies : UI_Popup
 
     void OnClickedPositionBtn(int idx)
     {
-        GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군"+ IntToEnum<Characters>(characterNum).ToString() +"의 무기를 지정하세요.";
+        //GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군"+ IntToEnum<Characters>(characterNum).ToString() +"의 무기를 지정하세요.";
         Managers.Ally.allies[characterNum].position = idx;
         position = idx;
         foreach (Transform child in GetObject((int)GameObjects.WeaponPanel).transform)
@@ -112,7 +121,7 @@ public class UI_SetAllies : UI_Popup
     {
         Managers.Ally.allies[characterNum].weapon = weapons[characterNum][position];
         Managers.Ally.isSet[characterNum] = true;
-        GetObject((int)GameObjects.DoneButton).gameObject.SetActive(true);
+        GetButton((int)Buttons.DoneButton).gameObject.SetActive(true);
         SetDicisionPanel(idx);
 
         foreach (Transform child in GetObject((int)GameObjects.PositionPanel).transform)
@@ -131,10 +140,10 @@ public class UI_SetAllies : UI_Popup
         }
         if(isDone)
         {
-            GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군 정보를 확인 후 시작하세요\n 혹은 바꾸고 싶은 아군을 선택하세요.";
+            //GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군 정보를 확인 후 시작하세요\n 혹은 바꾸고 싶은 아군을 선택하세요.";
             return;
         }
-        GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군을 지정하세요.";
+        //GetObject((int)GameObjects.TitleTMP).gameObject.GetComponent<TextMeshProUGUI>().text = "함께 싸울 아군을 지정하세요.";
     }
 
     void OnClickedDoneBtn()
@@ -159,5 +168,5 @@ public class UI_SetAllies : UI_Popup
     public T IntToEnum<T>(int e)
     {
         return (T)(object)e;
-    }*/
+    }
 }

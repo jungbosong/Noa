@@ -26,10 +26,7 @@ public class UI_Battle : UI_Scene
         Skill2Button,
         Skill3Button,
         Skill4Button,
-    }
-    private void Start()
-    {
-        Init();
+        SetAlliesButton,
     }
 
     public override bool Init()
@@ -41,13 +38,14 @@ public class UI_Battle : UI_Scene
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
 
-        //CreateAllies();
-        //CreateEnemies();
-        //Managers.UI.ShowPopupUI<UI_SetAllies>();
+        CreateAllies();
+        CreateEnemies();
+        GetButton((int)Buttons.SetAlliesButton).gameObject.BindEvent(OnClickedSetAlliesBtn);
+
         return true;
     }
 
-    /*public void CreateAllies()
+    public void CreateAllies()
     {
         Transform alliesPanel = GetObject((int)GameObjects.AlliesPanel).transform;
         foreach (Transform child in alliesPanel)
@@ -75,5 +73,10 @@ public class UI_Battle : UI_Scene
             if (enemy.Init())
                 enemy.SetInfo();
         }
-    }*/
+    }
+
+    void OnClickedSetAlliesBtn()
+    {
+        Managers.UI.ShowPopupUI<UI_SetAllies>();
+    }
 }
