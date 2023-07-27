@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0_Scenes/DevScene/EnhanceScene.unity
     guid: 0d03cf404d519d241b5068bfe19eff34
+  - enabled: 1
+    path: Assets/0_Scenes/DevScene/SetAlliesScene.unity
+    guid: b6b5bdb2f54eb6b4e9d96561d35816e3
+  - enabled: 1
+    path: Assets/0_Scenes/DevScene/BattleScene.unity
+    guid: 0a7ec7eed6f050b44857914650081809
   m_configObjects: {}

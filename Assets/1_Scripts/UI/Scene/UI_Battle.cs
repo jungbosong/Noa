@@ -26,7 +26,6 @@ public class UI_Battle : UI_Scene
         Skill2Button,
         Skill3Button,
         Skill4Button,
-        SetAlliesButton,
     }
 
     public override bool Init()
@@ -40,7 +39,7 @@ public class UI_Battle : UI_Scene
 
         CreateAllies();
         CreateEnemies();
-        GetButton((int)Buttons.SetAlliesButton).gameObject.BindEvent(OnClickedSetAlliesBtn);
+        //GetButton((int)Buttons.SetAlliesButton).gameObject.BindEvent(OnClickedSetAlliesBtn);
 
         return true;
     }
@@ -73,10 +72,5 @@ public class UI_Battle : UI_Scene
             if (enemy.Init())
                 enemy.SetInfo();
         }
-    }
-
-    void OnClickedSetAlliesBtn()
-    {
-        Managers.UI.ShowPopupUI<UI_SetAllies>();
     }
 }

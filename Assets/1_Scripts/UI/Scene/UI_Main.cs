@@ -44,7 +44,9 @@ public class UI_Main : UI_Scene
         GetButton((int)Buttons.SettingButton).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Setting") as Sprite;
         GetButton((int)Buttons.QuitButton).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Exit") as Sprite;
 
-        GetButton((int)Buttons.StartButton).gameObject.BindEvent(() => { Managers.Scene.ChangeScene(Define.Scene.LobbyScene);});
+        GetButton((int)Buttons.StartButton).gameObject.BindEvent(() => { 
+            //Managers.UI.ShowPopupUI<UI_SetAllies>();
+            Managers.Scene.ChangeScene(Define.Scene.SetAlliesScene);});
         GetButton((int)Buttons.SettingButton).gameObject.BindEvent(() => { Managers.UI.ShowPopupUI<UI_Setting>();});
         GetButton((int)Buttons.QuitButton).gameObject.BindEvent(() => { Managers.UI.ShowPopupUI<UI_QuitGame>();});
 

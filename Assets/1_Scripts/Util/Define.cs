@@ -25,6 +25,7 @@ public class Define
         StageScene,
         EnhanceScene,
         BattleScene,
+        SetAlliesScene,
     }
 
     public enum Sound
